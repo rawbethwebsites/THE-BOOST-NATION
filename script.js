@@ -1,4 +1,4 @@
-// Core interactions and GSAP animations for The Boost Nation landing
+// Core interactions and GSAP animations for the landing experience
 document.addEventListener("DOMContentLoaded", () => {
   const isGSAP = typeof gsap !== "undefined";
 
@@ -298,11 +298,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Scroll progress + shrinking nav
   const nav = document.querySelector(".nav");
   const progress = document.querySelector(".progress-bar span");
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (progress) progress.style.width = `${scrolled * 100}%`;
-    if (nav) nav.classList.toggle("shrink", window.scrollY > 40);
-  });
+  const updateScrollState = () => {
+    const denominator = document.body.scrollHeight - window.innerHeight;
+    const scrolled = denominator > 0 ? window.scrollY / denominator : 0;
+    if (progress) progress.style.width = `${Math.min(scrolled * 100, 100)}%`;
+    if (nav) nav.classList.toggle("shrink", window.scrollY > 6);
+  };
+  updateScrollState();
+  window.addEventListener("scroll", updateScrollState);
 
   // Mobile menu toggle
   const hamburger = document.querySelector(".hamburger");
