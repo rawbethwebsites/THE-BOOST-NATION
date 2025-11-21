@@ -221,44 +221,64 @@ document.addEventListener("DOMContentLoaded", () => {
     pricing: "Chatbot projects typically range from $3,000-$10,000 depending on complexity, features, and integrations. Most clients see ROI within 3-6 months through reduced support costs and increased conversions. Want a custom quote?"
   };
 
-  suggestionChips.forEach(chip => {
-    chip.addEventListener("click", () => {
-      const key = chip.textContent.trim().toLowerCase();
-      appendMessage(chip.textContent, "user");
-      const typing = showTyping();
-      setTimeout(() => {
-        if (typing) typing.remove();
-        appendMessage(scriptedReplies[key] || "I can help with chatbots, automation, or scheduling a consultation.");
-      }, 450);
-    });
-  });
-
   const input = document.querySelector(".nova-panel-input input");
   const sendBtn = document.querySelector(".nova-panel-input button");
+
+  const getLocalReply = lower => {
+    if (lower.includes("consultation")) {
+      return "Let's book your free 30-minute session! What's your email?";
+    }
+    if (lower.includes("pricing")) {
+      return "Chatbot projects typically range from $3,000-$10,000 depending on complexity, features, and integrations. Most clients see ROI within 3-6 months through reduced support costs and increased conversions. Want to discuss a custom quote for your needs?";
+    }
+    if (lower.includes("chatbot") || lower.includes("bot")) {
+      return "Our interactive chatbots are game-changers! They provide instant support, handle FAQs, track orders, schedule appointments, recommend products, generate leads, collect feedback, integrate with CRMs, support multiple languages, and provide detailed analytics. Which feature interests you most?";
+    }
+    return scriptedReplies[lower] || "Got it! I can connect you with instant support, automation plans, or set a consult.";
+  };
+
+  const fetchNovaReply = async messageText => {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: messageText })
+      });
+      if (!res.ok) {
+        const detail = await res.json().catch(() => ({}));
+        console.error("Chat proxy error", detail);
+        return null;
+      }
+      const data = await res.json();
+      return data?.message || null;
+    } catch (err) {
+      console.error("Chat fetch error", err);
+      return null;
+    }
+  };
+
+  const processMessage = async messageText => {
+    appendMessage(messageText, "user");
+    const typing = showTyping();
+    const lower = messageText.toLowerCase();
+    const localFallback = getLocalReply(lower);
+    const reply = await fetchNovaReply(messageText);
+    if (typing) typing.remove();
+    appendMessage(reply || localFallback);
+  };
+
+  suggestionChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const text = chip.textContent.trim();
+      processMessage(text);
+    });
+  });
 
   const handleSend = () => {
     if (!input || !input.value.trim()) return;
     const value = input.value.trim();
-    appendMessage(value, "user");
     input.value = "";
-    const lower = value.toLowerCase();
-    const response = (() => {
-      if (lower.includes("consultation")) {
-        return "Let's book your free 30-minute session! What's your email?";
-      }
-      if (lower.includes("pricing")) {
-        return "Chatbot projects typically range from $3,000-$10,000 depending on complexity, features, and integrations. Most clients see ROI within 3-6 months through reduced support costs and increased conversions. Want to discuss a custom quote for your needs?";
-      }
-      if (lower.includes("chatbot") || lower.includes("bot")) {
-        return "Our interactive chatbots are game-changers! They provide instant support, handle FAQs, track orders, schedule appointments, recommend products, generate leads, collect feedback, integrate with CRMs, support multiple languages, and provide detailed analytics. Which feature interests you most?";
-      }
-      return scriptedReplies[lower] || "Got it! I can connect you with instant support, automation plans, or set a consult.";
-    })();
-    const typing = showTyping();
-    setTimeout(() => {
-      if (typing) typing.remove();
-      appendMessage(response);
-    }, 450);
+    processMessage(value);
   };
 
   if (sendBtn) sendBtn.addEventListener("click", handleSend);
