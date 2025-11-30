@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Instagram Branding Quest | The Boost Nation</title>
-  <meta name="description" content="Share your Instagram brand details in a playful, step-by-step flow. We’ll craft your bio, CTA lineup, and hashtag kit.">
+  <title>Instagram Branding Intake | The Boost Nation</title>
+  <meta name="description" content="Share your Instagram branding details so we can craft your bio, CTA lineup, and hashtags.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23081427%22/><text x=%2250%22 y=%2264%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%237cf1d5%22 font-family=%22Arial%22>BN</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,83 +37,44 @@
   <main>
     <section class="section wizard-hero">
       <div class="wizard-hero-copy" data-animate>
-        <p class="eyebrow accent">Instagram Branding Quest</p>
-        <h1>Drop your details in game mode.</h1>
-        <p class="lede">We’ll ask one quick question at a time—just follow the prompts. At the end, you’ll see a personalized thank-you while we craft your bio, CTA lineup, and hashtag kit.</p>
+        <p class="eyebrow accent">Instagram Branding</p>
+        <h1>Share your Instagram details.</h1>
+        <p class="lede">A quick, single-step form powered by FormSubmit. We’ll reply with a tailored bio, CTA set, and starter hashtags.</p>
         <div class="hero-tags">
-          <span>Step-by-step</span>
+          <span>Fast intake</span>
+          <span>FormSubmit</span>
           <span>Mobile friendly</span>
-          <span>Personalized</span>
         </div>
       </div>
     </section>
 
     <section class="section wizard-shell">
-      <div class="brand-form-card wizard-card" data-animate>
-        <div class="wizard-top">
-          <div class="wizard-chip">Game mode • One card at a time</div>
-          <div class="wizard-progress">
-            <div class="wizard-progress-label">
-              <strong id="wizard-step-label">Step 1 of 1</strong>
-              <span id="wizard-step-name">Full name or Instagram handle</span>
-            </div>
-            <div class="wizard-progress-rail" aria-hidden="true">
-              <div class="wizard-progress-fill" style="width:0%"></div>
-            </div>
-          </div>
-        </div>
-
-        <form id="branding-wizard" action="https://formsubmit.co/rawbethwebsites@gmail.com" method="POST" novalidate>
+      <div class="brand-form-card" data-animate>
+        <form action="https://formsubmit.co/rawbethwebsites@gmail.com" method="POST" class="brand-form-grid">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="New Instagram Branding Submission">
-          <div class="wizard-step active" data-title="Quick Instagram brief">
-            <p class="step-tag">Step 1</p>
-            <h3>Share your Instagram details (quick test).</h3>
-            <p class="muted">Single-step submission so we can verify delivery.</p>
-            <input id="wiz-fullName" name="fullName" type="text" placeholder="e.g., Nova @theboostnation" title="Add your full name or @handle so we can reference you correctly." required>
-            <input id="wiz-email" name="email" type="email" placeholder="you@example.com" title="Best email to send your draft." required>
-            <input id="wiz-tagline" name="tagline" type="text" placeholder="Automate growth. Engage 24/7." title="Your tagline or catchphrase.">
-            <select id="wiz-focus" name="focus" title="Pick the primary lane for this profile.">
-              <option value="" disabled selected>Select focus</option>
-              <option>Personal brand</option>
-              <option>Business</option>
-              <option>Lifestyle</option>
-              <option>Creator</option>
-              <option>Community</option>
-            </select>
-            <textarea id="wiz-keyMessage" name="keyMessage" rows="3" placeholder="Instant support that feels human and premium." title="Key message or feeling to convey."></textarea>
+          <input type="hidden" name="_next" value="https://theboostnation.com/thank-you.html">
+
+          <div class="field">
+            <label for="fullName">Name or Instagram handle</label>
+            <input id="fullName" name="name" type="text" placeholder="e.g., Nova @theboostnation" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="_replyto" type="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Goals, aesthetic, links, and any must-have details." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="pill-btn ripple magnetic" type="submit">Submit</button>
+            <p class="muted small-print">Powered by FormSubmit. You’ll be redirected to a thank-you page after sending.</p>
           </div>
         </form>
-
-        <div class="wizard-actions">
-          <button class="ghost-btn ripple magnetic" type="button" id="wizard-back">Back</button>
-          <div class="wizard-cta">
-            <span class="wizard-cta-text">Single-step test submission.</span>
-            <button class="pill-btn ripple magnetic" type="button" id="wizard-next">Submit brief</button>
-          </div>
-        </div>
-
-        <div class="wizard-state-layer" aria-live="polite" id="wizard-overlay" hidden>
-          <div class="wizard-state loading" id="wizard-loading">
-            <div class="spinner" aria-hidden="true"></div>
-            <div>
-              <strong>Shaping your brand story...</strong>
-              <p class="muted">Give us a moment to tailor your Instagram blueprint.</p>
-            </div>
-          </div>
-          <div class="wizard-state success" id="wizard-success" hidden>
-            <div class="success-badge">Submitted</div>
-            <h3 id="wizard-success-title">Thanks!</h3>
-            <p class="muted" id="wizard-success-body">We’re crafting a bio, CTA lineup, and hashtag kit tailored to you.</p>
-            <button class="ghost-btn ripple magnetic" type="button" id="wizard-restart">Play again</button>
-          </div>
-          <div class="wizard-state error" id="wizard-error" hidden>
-            <div class="success-badge" style="background: rgba(255, 99, 99, 0.12); border-color: rgba(255, 99, 99, 0.4); color: #ff9c9c;">Issue</div>
-            <h3>We couldn’t send your brief.</h3>
-            <p class="muted" id="wizard-error-body">Please try again or email us directly.</p>
-            <button class="pill-btn ripple magnetic" type="button" id="wizard-error-retry">Try again</button>
-          </div>
-        </div>
       </div>
     </section>
   </main>
