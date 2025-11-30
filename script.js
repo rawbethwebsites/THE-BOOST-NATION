@@ -450,7 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(async res => {
             if (!res.ok) {
               const detail = await res.json().catch(() => ({}));
-              const msg = detail?.error || "We hit a snag sending your brief.";
+              const msg = detail?.error || detail?.message || "We hit a snag sending your brief.";
               throw new Error(msg);
             }
             return res.json();
