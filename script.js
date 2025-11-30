@@ -361,6 +361,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const wizardError = document.getElementById("wizard-error");
   const wizardErrorBody = document.getElementById("wizard-error-body");
   const wizardErrorRetry = document.getElementById("wizard-error-retry");
+  const FORM_ENDPOINT = "https://formsubmit.co/ajax/rawbethwebsites@gmail.com";
 
   if (wizardForm && wizardSteps.length) {
     let stepIndex = 0;
@@ -440,20 +441,21 @@ document.addEventListener("DOMContentLoaded", () => {
         goToStep(stepIndex + 1);
       } else {
         const formData = new FormData(wizardForm);
-        const payload = Object.fromEntries(formData.entries());
+        formData.append("_subject", `New Instagram Branding Submission — ${wizardForm.elements.fullName?.value || "Unknown"}`);
+        formData.append("_captcha", "false");
         setWizardState("loading");
-        fetch("/api/branding", {
+        fetch(FORM_ENDPOINT, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          headers: { Accept: "application/json" },
+          body: formData
         })
           .then(async res => {
-            if (!res.ok) {
-              const detail = await res.json().catch(() => ({}));
-              const msg = detail?.error || detail?.message || "We hit a snag sending your brief.";
+            const detail = await res.json().catch(() => ({}));
+            if (!res.ok || detail?.success === "false") {
+              const msg = detail?.message || "We hit a snag sending your brief.";
               throw new Error(msg);
             }
-            return res.json();
+            return detail;
           })
           .then(() => {
             const rawName = wizardForm.elements.fullName?.value?.trim() || "there";
