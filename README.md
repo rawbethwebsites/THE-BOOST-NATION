@@ -6,7 +6,7 @@
 
 ## Run
 - Start dev server (serves static files and OpenRouter proxy): `npm run dev`
-- Open `http://localhost:3000/index.html` or `http://localhost:3000/about.html`
+- Visit your deployed site (e.g., https://theboostnation.com) or the dev server URL in your terminal output.
 
 ## OpenRouter proxy
 - Endpoint: `POST /api/chat`
