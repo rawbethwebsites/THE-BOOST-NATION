@@ -441,13 +441,14 @@ document.addEventListener("DOMContentLoaded", () => {
         goToStep(stepIndex + 1);
       } else {
         const formData = new FormData(wizardForm);
-        formData.append("_subject", `New Instagram Branding Submission — ${wizardForm.elements.fullName?.value || "Unknown"}`);
-        formData.append("_captcha", "false");
+        const payload = Object.fromEntries(formData.entries());
+        payload._subject = `New Instagram Branding Submission — ${wizardForm.elements.fullName?.value || "Unknown"}`;
+        payload._captcha = "false";
         setWizardState("loading");
         fetch(FORM_ENDPOINT, {
           method: "POST",
-          headers: { Accept: "application/json" },
-          body: formData
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
         })
           .then(async res => {
             const detail = await res.json().catch(() => ({}));
@@ -470,6 +471,10 @@ document.addEventListener("DOMContentLoaded", () => {
           .catch(err => {
             console.error("Branding submit failed", err);
             if (wizardErrorBody) wizardErrorBody.textContent = err?.message || "Please try again in a moment.";
+            // Fallback: attempt normal form POST to FormSubmit (non-AJAX)
+            wizardForm.action = "https://formsubmit.co/rawbethwebsites@gmail.com";
+            wizardForm.method = "POST";
+            wizardForm.submit();
             setWizardState("error");
           });
       }
