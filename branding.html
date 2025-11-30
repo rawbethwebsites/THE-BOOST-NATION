@@ -38,10 +38,10 @@
     <section class="section wizard-hero">
       <div class="wizard-hero-copy" data-animate>
         <p class="eyebrow accent">Instagram Branding</p>
-        <h1>Share your Instagram details.</h1>
-        <p class="lede">A quick, single-step form powered by FormSubmit. We’ll reply with a tailored bio, CTA set, and starter hashtags.</p>
+        <h1>Share your Instagram details, one step at a time.</h1>
+        <p class="lede">Short, guided prompts—so you never face a giant wall of fields. We’ll craft your bio, CTA set, and starter hashtags.</p>
         <div class="hero-tags">
-          <span>Fast intake</span>
+          <span>Step-by-step</span>
           <span>FormSubmit</span>
           <span>Mobile friendly</span>
         </div>
@@ -50,121 +50,132 @@
 
     <section class="section wizard-shell">
       <div class="brand-form-card" data-animate>
-        <form action="https://formsubmit.co/rawbethaffiliate@gmail.com" method="POST" class="brand-form-grid">
+        <div class="wizard-top">
+          <div class="wizard-chip">Step-by-step • One prompt at a time</div>
+          <div class="wizard-progress">
+            <div class="wizard-progress-label">
+              <strong id="wizard-step-label">Step 1</strong>
+              <span id="wizard-step-name">General</span>
+            </div>
+            <div class="wizard-progress-rail" aria-hidden="true">
+              <div class="wizard-progress-fill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <form id="branding-wizard" action="https://formsubmit.co/rawbethaffiliate@gmail.com" method="POST">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_subject" value="New Instagram Branding Submission">
           <input type="hidden" name="_next" value="https://theboostnation.com/thank-you.html">
 
-          <div class="field">
-            <label for="fullName">What is your full name or preferred handle (Instagram username)?</label>
-            <input id="fullName" name="name" type="text" placeholder="e.g., Nova @theboostnation" required>
-          </div>
-
-          <div class="field">
+          <div class="wizard-step active" data-title="Name / Handle">
+            <p class="step-tag">General</p>
+            <h3>What is your full name or preferred handle?</h3>
+            <input name="name" type="text" placeholder="e.g., Nova @theboostnation" required>
             <label for="email">Email</label>
             <input id="email" name="_replyto" type="email" placeholder="you@example.com" required>
           </div>
 
-          <div class="field">
-            <label for="tagline">Do you have a tagline or catchphrase you’d like to include?</label>
-            <input id="tagline" name="tagline" type="text" placeholder="e.g., Automate growth. Engage 24/7.">
+          <div class="wizard-step" data-title="Tagline">
+            <p class="step-tag">General</p>
+            <h3>Do you have a tagline or catchphrase?</h3>
+            <input name="tagline" type="text" placeholder="Automate growth. Engage 24/7.">
+            <label>Main areas to focus on</label>
+            <input name="focus" type="text" placeholder="Personal brand • Business • Lifestyle • Niche expertise">
           </div>
 
-          <div class="field">
-            <label for="focus">Main areas you want to focus on (personal brand, business, lifestyle, niche expertise)?</label>
-            <input id="focus" name="focus" type="text" placeholder="e.g., Business • Automation • Web builds">
+          <div class="wizard-step" data-title="Personality">
+            <p class="step-tag">General</p>
+            <h3>Describe your brand or personality in a few words.</h3>
+            <input name="personality" type="text" placeholder="Creative • Professional • Helpful">
+            <label>Key message or feeling to convey</label>
+            <textarea name="keyMessage" rows="2" placeholder="Premium support that feels human and instant."></textarea>
           </div>
 
-          <div class="field">
-            <label for="personality">Describe your brand or personality in a few words.</label>
-            <input id="personality" name="personality" type="text" placeholder="Creative • Professional • Helpful">
+          <div class="wizard-step" data-title="Target audience">
+            <p class="step-tag">Target Audience</p>
+            <h3>Who is your target audience?</h3>
+            <textarea name="audience" rows="2" placeholder="Age, gender, interests, profession"></textarea>
+            <label>What action should visitors take?</label>
+            <input name="desiredAction" type="text" placeholder="Follow • Click link • Engage • Learn more">
+            <label>Specific demographics to attract</label>
+            <input name="demographics" type="text" placeholder="Entrepreneurs, fitness enthusiasts, creatives">
           </div>
 
-          <div class="field">
-            <label for="keyMessage">What key message or feeling do you want your profile to convey?</label>
-            <textarea id="keyMessage" name="keyMessage" rows="2" placeholder="Premium support that feels human and instant."></textarea>
+          <div class="wizard-step" data-title="Content & aesthetic">
+            <p class="step-tag">Content Focus & Aesthetic</p>
+            <h3>What type of content do you share most often?</h3>
+            <input name="contentType" type="text" placeholder="Reels, carousels, quick tips, stories">
+            <label>Themes or topics you focus on</label>
+            <input name="themes" type="text" placeholder="Travel, fashion, business, tech">
+            <label>Preferred color scheme or aesthetic</label>
+            <input name="aesthetic" type="text" placeholder="Minimal neon teal + midnight, clean type">
+            <label>Instagram pages you admire</label>
+            <input name="inspiration" type="text" placeholder="@stripe, @notion, @figma">
           </div>
 
-          <div class="field">
-            <label for="audience">Who is your target audience (age, gender, interests, profession)?</label>
-            <textarea id="audience" name="audience" rows="2" placeholder="22-40, founders, ecom owners, growth leads"></textarea>
+          <div class="wizard-step" data-title="CTA & links">
+            <p class="step-tag">Call to Action & Links</p>
+            <h3>Links to include?</h3>
+            <input name="links" type="text" placeholder="Site, shop, Linktree, Calendly">
+            <label>Specific calls-to-action</label>
+            <input name="cta" type="text" placeholder="DM for inquiries • Click to shop • Join newsletter">
           </div>
 
-          <div class="field">
-            <label for="desiredAction">What action should visitors take (follow, click link, engage, learn more)?</label>
-            <input id="desiredAction" name="desiredAction" type="text" placeholder="Follow + click link-in-bio for consult">
+          <div class="wizard-step" data-title="Brand elements">
+            <p class="step-tag">Personal or Business</p>
+            <h3>Personal elements or business focus?</h3>
+            <input name="personalElements" type="text" placeholder="Hobbies, quotes, or keep it strictly business">
+            <label>Hashtags you regularly use</label>
+            <input name="hashtags" type="text" placeholder="#automation #founder #nocode">
           </div>
 
-          <div class="field">
-            <label for="demographics">Any specific demographics to attract?</label>
-            <input id="demographics" name="demographics" type="text" placeholder="Entrepreneurs, fitness enthusiasts, creatives">
+          <div class="wizard-step" data-title="Tone & voice">
+            <p class="step-tag">Tone & Voice</p>
+            <h3>Preferred tone and communication style?</h3>
+            <input name="tone" type="text" placeholder="Friendly, professional, motivational, funny">
+            <label>How should you come across?</label>
+            <input name="communicationStyle" type="text" placeholder="Casual, formal, witty, informative">
           </div>
 
-          <div class="field">
-            <label for="contentType">What type of content do you share most often?</label>
-            <input id="contentType" name="contentType" type="text" placeholder="Reels, carousels, quick tips, stories">
-          </div>
-
-          <div class="field">
-            <label for="themes">Themes or topics you focus on?</label>
-            <input id="themes" name="themes" type="text" placeholder="Travel, fashion, business, tech">
-          </div>
-
-          <div class="field">
-            <label for="aesthetic">Preferred color scheme or visual aesthetic?</label>
-            <input id="aesthetic" name="aesthetic" type="text" placeholder="Minimal neon teal + midnight, clean type">
-          </div>
-
-          <div class="field">
-            <label for="inspiration">Any Instagram pages you admire for inspiration?</label>
-            <input id="inspiration" name="inspiration" type="text" placeholder="@stripe, @notion, @figma">
-          </div>
-
-          <div class="field">
-            <label for="links">Website, shop, or other socials to link?</label>
-            <input id="links" name="links" type="text" placeholder="Site, shop, Linktree, Calendly">
-          </div>
-
-          <div class="field">
-            <label for="cta">Specific calls-to-action to include?</label>
-            <input id="cta" name="cta" type="text" placeholder="DM for inquiries • Click to shop • Join newsletter">
-          </div>
-
-          <div class="field">
-            <label for="personalElements">Personal elements or business focus?</label>
-            <input id="personalElements" name="personalElements" type="text" placeholder="Hobbies, quotes, or keep it strictly business">
-          </div>
-
-          <div class="field">
-            <label for="hashtags">Hashtags you regularly use?</label>
-            <input id="hashtags" name="hashtags" type="text" placeholder="#automation #founder #nocode">
-          </div>
-
-          <div class="field">
-            <label for="tone">Tone you want (friendly, professional, motivational, funny)?</label>
-            <input id="tone" name="tone" type="text" placeholder="Friendly and confident; witty captions">
-          </div>
-
-          <div class="field">
-            <label for="communicationStyle">How should you come across (casual, formal, witty, informative)?</label>
-            <input id="communicationStyle" name="communicationStyle" type="text" placeholder="Casual but concise; light emojis">
-          </div>
-
-          <div class="field">
-            <label for="achievements">Achievements, awards, or credentials to include?</label>
-            <textarea id="achievements" name="achievements" rows="2" placeholder="Featured in..., 10k+ users, awards"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="avoid">Anything you do NOT want included (phrases, emojis, topics)?</label>
-            <input id="avoid" name="avoid" type="text" placeholder="No jargon, avoid rocket emojis">
-          </div>
-
-          <div class="form-actions">
-            <button class="pill-btn ripple magnetic" type="submit">Submit</button>
-            <p class="muted small-print">Powered by FormSubmit. You’ll be redirected to a thank-you page after sending.</p>
+          <div class="wizard-step" data-title="Credibility">
+            <p class="step-tag">Misc</p>
+            <h3>Achievements, awards, or credentials to include?</h3>
+            <textarea name="achievements" rows="2" placeholder="Featured in..., 10k+ users, awards"></textarea>
+            <label>Anything to avoid (phrases, emojis, topics)?</label>
+            <input name="avoid" type="text" placeholder="No jargon, avoid rocket emojis">
           </div>
         </form>
+
+        <div class="wizard-actions">
+          <button class="ghost-btn ripple magnetic" type="button" id="wizard-back">Back</button>
+          <div class="wizard-cta">
+            <span class="wizard-cta-text">One prompt at a time.</span>
+            <button class="pill-btn ripple magnetic" type="button" id="wizard-next">Next</button>
+          </div>
+        </div>
+
+        <div class="wizard-state-layer" aria-live="polite" id="wizard-overlay" hidden>
+          <div class="wizard-state loading" id="wizard-loading">
+            <div class="spinner" aria-hidden="true"></div>
+            <div>
+              <strong>Sending your details...</strong>
+              <p class="muted">Give us a moment while we send your brief.</p>
+            </div>
+          </div>
+          <div class="wizard-state success" id="wizard-success" hidden>
+            <div class="success-badge">Submitted</div>
+            <h3 id="wizard-success-title">Thanks!</h3>
+            <p class="muted" id="wizard-success-body">We received your Instagram brief and will send your tailored bio, CTA set, and hashtags.</p>
+            <a class="ghost-btn ripple magnetic" href="branding.html">Submit another</a>
+          </div>
+          <div class="wizard-state error" id="wizard-error" hidden>
+            <div class="success-badge" style="background: rgba(255, 99, 99, 0.12); border-color: rgba(255, 99, 99, 0.4); color: #ff9c9c;">Issue</div>
+            <h3>We couldn’t send your brief.</h3>
+            <p class="muted" id="wizard-error-body">Please try again or email us directly.</p>
+            <button class="pill-btn ripple magnetic" type="button" id="wizard-error-retry">Try again</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
