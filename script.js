@@ -441,14 +441,13 @@ document.addEventListener("DOMContentLoaded", () => {
         goToStep(stepIndex + 1);
       } else {
         const formData = new FormData(wizardForm);
-        const payload = Object.fromEntries(formData.entries());
-        payload._subject = `New Instagram Branding Submission — ${wizardForm.elements.fullName?.value || "Unknown"}`;
-        payload._captcha = "false";
+        formData.set("_subject", `New Instagram Branding Submission — ${wizardForm.elements.fullName?.value || "Unknown"}`);
+        formData.set("_captcha", "false");
         setWizardState("loading");
         fetch(FORM_ENDPOINT, {
           method: "POST",
-          headers: { Accept: "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          headers: { Accept: "application/json" },
+          body: formData
         })
           .then(async res => {
             const detail = await res.json().catch(() => ({}));
