@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+const BRANDING_RECIPIENT = process.env.BRANDING_RECIPIENT || "rawbethwebsites@gmail.com";
 
 app.use(express.json());
 app.use(express.static("."));
@@ -46,6 +47,57 @@ app.post("/api/chat", async (req, res) => {
   } catch (err) {
     console.error("Proxy error:", err);
     return res.status(500).json({ error: "Unexpected server error." });
+  }
+});
+
+app.post("/api/branding", async (req, res) => {
+  if (!BRANDING_RECIPIENT) {
+    return res.status(500).json({ error: "Form recipient not configured." });
+  }
+
+  const payload = req.body || {};
+
+  try {
+    const params = new URLSearchParams({
+      _subject: `New Instagram Branding Submission — ${payload.fullName || "Unknown"}`,
+      _captcha: "false",
+      ...payload
+    });
+
+    const upstream = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(BRANDING_RECIPIENT)}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+        Referer: "https://theboostnation.com/branding.html"
+      },
+      body: params.toString()
+    });
+
+    if (!upstream.ok) {
+      const detailText = await upstream.text().catch(() => "");
+      const detail = (() => {
+        try {
+          return JSON.parse(detailText);
+        } catch {
+          return null;
+        }
+      })();
+      console.error("FormSubmit error", { status: upstream.status, detail: detail || detailText });
+      return res
+        .status(502)
+        .json({ error: detail?.message || detailText || "Upstream form service error.", status: upstream.status });
+    }
+
+    const data = await upstream.json().catch(() => null);
+    if (data && data.success === "false") {
+      return res.status(502).json({ error: data.message || "Form service error." });
+    }
+
+    res.json({ ok: true, forwardedTo: BRANDING_RECIPIENT });
+  } catch (err) {
+    console.error("Branding submit proxy failed", err);
+    res.status(500).json({ error: err?.message || "Failed to send submission." });
   }
 });
 

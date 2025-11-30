@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Instagram Branding Quest | The Boost Nation</title>
+  <meta name="description" content="Share your Instagram brand details in a playful, step-by-step flow. We’ll craft your bio, CTA lineup, and hashtag kit.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%23081427%22/><text x=%2250%22 y=%2264%22 font-size=%2258%22 text-anchor=%22middle%22 fill=%22%237cf1d5%22 font-family=%22Arial%22>BN</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-branding">
+  <div class="bg-aurora"></div>
+  <div class="bg-grid"></div>
+
+  <header class="nav">
+    <div class="brand">
+      <div class="brand-mark">BN</div>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+    </nav>
+    <button class="pill-btn nav-cta ripple magnetic" type="button" aria-label="Back to Home" onclick="location.href='index.html'">Back to Home</button>
+    <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <button class="pill-btn" type="button" onclick="location.href='index.html'">Back to Home</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wizard-hero">
+      <div class="wizard-hero-copy" data-animate>
+        <p class="eyebrow accent">Instagram Branding Quest</p>
+        <h1>Drop your details in game mode.</h1>
+        <p class="lede">We’ll ask one quick question at a time—just follow the prompts. At the end, you’ll see a personalized thank-you while we craft your bio, CTA lineup, and hashtag kit.</p>
+        <div class="hero-tags">
+          <span>Step-by-step</span>
+          <span>Mobile friendly</span>
+          <span>Personalized</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wizard-shell">
+      <div class="brand-form-card wizard-card" data-animate>
+        <div class="wizard-top">
+          <div class="wizard-chip">Game mode • One card at a time</div>
+          <div class="wizard-progress">
+            <div class="wizard-progress-label">
+              <strong id="wizard-step-label">Step 1 of 21</strong>
+              <span id="wizard-step-name">Full name or Instagram handle</span>
+            </div>
+            <div class="wizard-progress-rail" aria-hidden="true">
+              <div class="wizard-progress-fill" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <form id="branding-wizard" novalidate>
+          <div class="wizard-step active" data-title="Full name or Instagram handle">
+            <p class="step-tag">Step 1</p>
+            <h3>What’s your name or IG handle?</h3>
+            <p class="muted">Add your full name or @handle so we reference you correctly.</p>
+            <input id="wiz-fullName" name="fullName" type="text" placeholder="e.g., Nova @theboostnation" title="Add your full name or @handle so we can reference you correctly." required>
+          </div>
+
+          <div class="wizard-step" data-title="Tagline or catchphrase">
+            <p class="step-tag">Step 2</p>
+            <h3>Share your tagline or catchphrase.</h3>
+            <p class="muted">Short, memorable, and bio-ready.</p>
+            <input id="wiz-tagline" name="tagline" type="text" placeholder="Automate growth. Engage 24/7." title="A short line that appears in bio banners or content openers." required>
+          </div>
+
+          <div class="wizard-step" data-title="Instagram focus">
+            <p class="step-tag">Step 3</p>
+            <h3>What’s the focus of this profile?</h3>
+            <p class="muted">Pick the primary lane.</p>
+            <select id="wiz-focus" name="focus" title="Pick the primary lane for this profile." required>
+              <option value="" disabled selected>Select focus</option>
+              <option>Personal brand</option>
+              <option>Business</option>
+              <option>Lifestyle</option>
+              <option>Creator</option>
+              <option>Community</option>
+            </select>
+          </div>
+
+          <div class="wizard-step" data-title="Brand personality">
+            <p class="step-tag">Step 4</p>
+            <h3>Describe your personality in a few words.</h3>
+            <p class="muted">3-5 words that capture your vibe.</p>
+            <input id="wiz-personality" name="personality" type="text" placeholder="Creative • Confident • Helpful" title="3-5 words that capture the vibe your audience should feel." required>
+          </div>
+
+          <div class="wizard-step" data-title="Key message">
+            <p class="step-tag">Step 5</p>
+            <h3>What key feeling or message should people get?</h3>
+            <p class="muted">One guiding promise or impression.</p>
+            <textarea id="wiz-keyMessage" name="keyMessage" rows="3" placeholder="Instant support that feels human and premium." title="What you want people to feel or remember after seeing the profile." required></textarea>
+          </div>
+
+          <div class="wizard-step" data-title="Target audience">
+            <p class="step-tag">Step 6</p>
+            <h3>Who is your target audience?</h3>
+            <p class="muted">Age, interests, profession, location.</p>
+            <textarea id="wiz-targetAudience" name="targetAudience" rows="3" placeholder="22-40, founders, ecom owners, growth leads" title="Who you want to attract: age, interests, profession, location." required></textarea>
+          </div>
+
+          <div class="wizard-step" data-title="Desired audience actions">
+            <p class="step-tag">Step 7</p>
+            <h3>What do you want people to do?</h3>
+            <p class="muted">Follow, click, book—spell it out.</p>
+            <input id="wiz-desiredActions" name="desiredActions" type="text" placeholder="Follow, click link-in-bio, book a consult" title="Primary actions you want visitors to take after landing on your profile." required>
+          </div>
+
+          <div class="wizard-step" data-title="Demographics to attract">
+            <p class="step-tag">Step 8</p>
+            <h3>Any demographics to target?</h3>
+            <p class="muted">Optional: niches or locales.</p>
+            <input id="wiz-demographics" name="demographics" type="text" placeholder="US/UK tech buyers, service founders" title="Specific demographic or locale targets to prioritize.">
+          </div>
+
+          <div class="wizard-step" data-title="Content types">
+            <p class="step-tag">Step 9</p>
+            <h3>What content do you post?</h3>
+            <p class="muted">Formats keep us on-brand.</p>
+            <input id="wiz-contentType" name="contentType" type="text" placeholder="Reels, carousels, quick tips, behind-the-scenes" title="Tell us the main formats you post: photos, reels, stories, guides." required>
+          </div>
+
+          <div class="wizard-step" data-title="Content themes">
+            <p class="step-tag">Step 10</p>
+            <h3>List your themes or topics.</h3>
+            <p class="muted">Recurring pillars help with hashtags.</p>
+            <input id="wiz-themes" name="themes" type="text" placeholder="Chatbots, automation, web builds, client wins" title="List your recurring topics so we can cluster hashtags and CTAs." required>
+          </div>
+
+          <div class="wizard-step" data-title="Preferred aesthetic">
+            <p class="step-tag">Step 11</p>
+            <h3>What’s your aesthetic?</h3>
+            <p class="muted">Colors, mood, lighting.</p>
+            <input id="wiz-aesthetic" name="aesthetic" type="text" placeholder="Minimal neon teal + midnight" title="Colors, lighting, typography, or overall visual mood you want." required>
+          </div>
+
+          <div class="wizard-step" data-title="Inspiration pages">
+            <p class="step-tag">Step 12</p>
+            <h3>Inspo IG pages?</h3>
+            <p class="muted">Drop a few handles.</p>
+            <input id="wiz-inspiration" name="inspiration" type="text" placeholder="@stripe, @notion, @figma" title="Profiles you admire so we can mirror pacing, tone, and layout cues.">
+          </div>
+
+          <div class="wizard-step" data-title="Links to include">
+            <p class="step-tag">Step 13</p>
+            <h3>Links to include.</h3>
+            <p class="muted">Site, shop, scheduler, socials.</p>
+            <input id="wiz-links" name="links" type="text" placeholder="Website, shop, Calendly, Linktree" title="Any URLs that should live in bio or buttons." required>
+          </div>
+
+          <div class="wizard-step" data-title="Calls-to-action">
+            <p class="step-tag">Step 14</p>
+            <h3>Favorite calls-to-action?</h3>
+            <p class="muted">What should buttons say?</p>
+            <input id="wiz-cta" name="cta" type="text" placeholder="DM for inquiries • Click to book • View pricing" title="CTA phrasing you like for buttons, bios, or story highlights." required>
+          </div>
+
+          <div class="wizard-step" data-title="Personal elements">
+            <p class="step-tag">Step 15</p>
+            <h3>Personal touches to include.</h3>
+            <p class="muted">Hobbies, quotes, routines.</p>
+            <input id="wiz-personalElements" name="personalElements" type="text" placeholder="Coffee lover, traveler, daily build logs" title="Human touches—hobbies, quotes, routines—that should appear.">
+          </div>
+
+          <div class="wizard-step" data-title="Hashtags">
+            <p class="step-tag">Step 16</p>
+            <h3>Hashtags you regularly use.</h3>
+            <p class="muted">Your go-to tags.</p>
+            <input id="wiz-hashtags" name="hashtags" type="text" placeholder="#automation #founder #nocode" title="Your go-to hashtags or niche tags to prioritize.">
+          </div>
+
+          <div class="wizard-step" data-title="Tone and voice">
+            <p class="step-tag">Step 17</p>
+            <h3>What tone should we write in?</h3>
+            <p class="muted">Friendly, expert, playful?</p>
+            <input id="wiz-tone" name="tone" type="text" placeholder="Friendly, confident, punchy" title="How your copy should read: warm, expert, playful, etc." required>
+          </div>
+
+          <div class="wizard-step" data-title="Communication style">
+            <p class="step-tag">Step 18</p>
+            <h3>How do you like to communicate?</h3>
+            <p class="muted">Formality, cadence, emojis.</p>
+            <input id="wiz-communicationStyle" name="communicationStyle" type="text" placeholder="Casual DMs, crisp captions, minimal emojis" title="Formality, cadence, and emoji use you’re comfortable with." required>
+          </div>
+
+          <div class="wizard-step" data-title="Achievements or credentials">
+            <p class="step-tag">Step 19</p>
+            <h3>Achievements, awards, or credentials?</h3>
+            <p class="muted">Proof points that build trust.</p>
+            <textarea id="wiz-achievements" name="achievements" rows="3" placeholder="Featured in TechCrunch, 10k+ users, HubSpot partner" title="Proof points that build credibility (press, clients, milestones)."></textarea>
+          </div>
+
+          <div class="wizard-step" data-title="Things to avoid">
+            <p class="step-tag">Step 20</p>
+            <h3>Anything to avoid?</h3>
+            <p class="muted">Words, phrases, emojis, topics.</p>
+            <input id="wiz-avoid" name="avoid" type="text" placeholder="No jargon, avoid rocket emojis" title="Words, phrases, emojis, or topics you don’t want included.">
+          </div>
+
+          <div class="wizard-step" data-title="Additional details">
+            <p class="step-tag">Bonus</p>
+            <h3>Any other personal details?</h3>
+            <p class="muted">Anything else that keeps us on-brand.</p>
+            <textarea id="wiz-additional" name="additional" rows="3" placeholder="Weekly drops, community perks, DMs handled by Nova" title="Other cues that keep the profile on-brand."></textarea>
+          </div>
+        </form>
+
+        <div class="wizard-actions">
+          <button class="ghost-btn ripple magnetic" type="button" id="wizard-back">Back</button>
+          <div class="wizard-cta">
+            <span class="wizard-cta-text">Tap through—just like a mini game.</span>
+            <button class="pill-btn ripple magnetic" type="button" id="wizard-next">Next</button>
+          </div>
+        </div>
+
+        <div class="wizard-state-layer" aria-live="polite" id="wizard-overlay" hidden>
+          <div class="wizard-state loading" id="wizard-loading">
+            <div class="spinner" aria-hidden="true"></div>
+            <div>
+              <strong>Shaping your brand story...</strong>
+              <p class="muted">Give us a moment to tailor your Instagram blueprint.</p>
+            </div>
+          </div>
+          <div class="wizard-state success" id="wizard-success" hidden>
+            <div class="success-badge">Submitted</div>
+            <h3 id="wizard-success-title">Thanks!</h3>
+            <p class="muted" id="wizard-success-body">We’re crafting a bio, CTA lineup, and hashtag kit tailored to you.</p>
+            <button class="ghost-btn ripple magnetic" type="button" id="wizard-restart">Play again</button>
+          </div>
+          <div class="wizard-state error" id="wizard-error" hidden>
+            <div class="success-badge" style="background: rgba(255, 99, 99, 0.12); border-color: rgba(255, 99, 99, 0.4); color: #ff9c9c;">Issue</div>
+            <h3>We couldn’t send your brief.</h3>
+            <p class="muted" id="wizard-error-body">Please try again or email us directly.</p>
+            <button class="pill-btn ripple magnetic" type="button" id="wizard-error-retry">Try again</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.2/dist/ScrollToPlugin.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -342,4 +342,169 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // Branding wizard (multi-step game flow)
+  const wizardForm = document.getElementById("branding-wizard");
+  const wizardCard = document.querySelector(".wizard-card");
+  const wizardSteps = wizardForm ? Array.from(wizardForm.querySelectorAll(".wizard-step")) : [];
+  const wizardStepLabel = document.getElementById("wizard-step-label");
+  const wizardStepName = document.getElementById("wizard-step-name");
+  const wizardProgressFill = document.querySelector(".wizard-progress-fill");
+  const wizardNext = document.getElementById("wizard-next");
+  const wizardBack = document.getElementById("wizard-back");
+  const wizardOverlay = document.getElementById("wizard-overlay");
+  const wizardLoading = document.getElementById("wizard-loading");
+  const wizardSuccess = document.getElementById("wizard-success");
+  const wizardSuccessTitle = document.getElementById("wizard-success-title");
+  const wizardSuccessBody = document.getElementById("wizard-success-body");
+  const wizardRestart = document.getElementById("wizard-restart");
+  const wizardError = document.getElementById("wizard-error");
+  const wizardErrorBody = document.getElementById("wizard-error-body");
+  const wizardErrorRetry = document.getElementById("wizard-error-retry");
+
+  if (wizardForm && wizardSteps.length) {
+    let stepIndex = 0;
+    const totalSteps = wizardSteps.length;
+
+    const setWizardState = state => {
+      if (!wizardOverlay) return;
+      if (state === "idle") {
+        wizardOverlay.hidden = true;
+        if (wizardLoading) wizardLoading.hidden = true;
+        if (wizardSuccess) wizardSuccess.hidden = true;
+        if (wizardError) wizardError.hidden = true;
+        wizardCard?.classList.remove("submitting", "done");
+        if (wizardNext) wizardNext.disabled = false;
+        if (wizardBack) wizardBack.disabled = false;
+      }
+      if (state === "loading") {
+        wizardOverlay.hidden = false;
+        if (wizardLoading) wizardLoading.hidden = false;
+        if (wizardSuccess) wizardSuccess.hidden = true;
+        if (wizardError) wizardError.hidden = true;
+        wizardCard?.classList.add("submitting");
+        if (wizardNext) wizardNext.disabled = true;
+        if (wizardBack) wizardBack.disabled = true;
+      }
+      if (state === "success") {
+        wizardOverlay.hidden = false;
+        if (wizardLoading) wizardLoading.hidden = true;
+        if (wizardSuccess) wizardSuccess.hidden = false;
+        if (wizardError) wizardError.hidden = true;
+        wizardCard?.classList.add("done");
+        if (wizardNext) wizardNext.disabled = false;
+        if (wizardBack) wizardBack.disabled = false;
+      }
+      if (state === "error") {
+        wizardOverlay.hidden = false;
+        if (wizardLoading) wizardLoading.hidden = true;
+        if (wizardSuccess) wizardSuccess.hidden = true;
+        if (wizardError) wizardError.hidden = false;
+        wizardCard?.classList.remove("submitting");
+        wizardCard?.classList.remove("done");
+        if (wizardNext) wizardNext.disabled = false;
+        if (wizardBack) wizardBack.disabled = false;
+      }
+    };
+
+    const updateStep = () => {
+      wizardSteps.forEach((step, idx) => {
+        step.classList.toggle("active", idx === stepIndex);
+      });
+      const current = wizardSteps[stepIndex];
+      const title = current?.dataset?.title || current?.querySelector("h3")?.textContent || "Step";
+      if (wizardStepLabel) wizardStepLabel.textContent = `Step ${Math.min(stepIndex + 1, totalSteps)} of ${totalSteps}`;
+      if (wizardStepName) wizardStepName.textContent = title;
+      const progress = totalSteps ? ((stepIndex + 1) / totalSteps) * 100 : 0;
+      if (wizardProgressFill) wizardProgressFill.style.width = `${progress}%`;
+      if (wizardBack) wizardBack.disabled = stepIndex === 0;
+      if (wizardNext) wizardNext.textContent = stepIndex === totalSteps - 1 ? "Submit brief" : "Next";
+    };
+
+    const goToStep = newIndex => {
+      stepIndex = Math.max(0, Math.min(newIndex, totalSteps - 1));
+      updateStep();
+      const activeField = wizardSteps[stepIndex]?.querySelector("input, select, textarea");
+      if (activeField) activeField.focus();
+    };
+
+    const handleNext = () => {
+      const currentStep = wizardSteps[stepIndex];
+      if (!currentStep) return;
+      const field = currentStep.querySelector("input, select, textarea");
+      if (field && field.required && !field.checkValidity()) {
+        field.reportValidity();
+        return;
+      }
+      if (stepIndex < totalSteps - 1) {
+        goToStep(stepIndex + 1);
+      } else {
+        const formData = new FormData(wizardForm);
+        const payload = Object.fromEntries(formData.entries());
+        setWizardState("loading");
+        fetch("/api/branding", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        })
+          .then(async res => {
+            if (!res.ok) {
+              const detail = await res.json().catch(() => ({}));
+              const msg = detail?.error || "We hit a snag sending your brief.";
+              throw new Error(msg);
+            }
+            return res.json();
+          })
+          .then(() => {
+            const rawName = wizardForm.elements.fullName?.value?.trim() || "there";
+            const displayName = rawName.startsWith("@") ? rawName : rawName.split(" ")[0] || rawName;
+            if (wizardSuccessTitle) wizardSuccessTitle.textContent = `Thanks, ${displayName}!`;
+            if (wizardSuccessBody) {
+              wizardSuccessBody.textContent =
+                "We’re crafting a bio, CTA lineup, and hashtag kit tailored to your Instagram goals.";
+            }
+            setWizardState("success");
+          })
+          .catch(err => {
+            console.error("Branding submit failed", err);
+            if (wizardErrorBody) wizardErrorBody.textContent = err?.message || "Please try again in a moment.";
+            setWizardState("error");
+          });
+      }
+    };
+
+    const handleBack = () => {
+      if (stepIndex === 0) return;
+      goToStep(stepIndex - 1);
+    };
+
+    if (wizardNext) wizardNext.addEventListener("click", handleNext);
+    if (wizardBack) wizardBack.addEventListener("click", handleBack);
+
+    wizardForm.addEventListener("keydown", e => {
+      const tag = e.target.tagName.toLowerCase();
+      const isTextarea = tag === "textarea";
+      if (e.key === "Enter" && !isTextarea) {
+        e.preventDefault();
+        handleNext();
+      }
+    });
+
+    if (wizardRestart) {
+      wizardRestart.addEventListener("click", () => {
+        wizardForm.reset();
+        setWizardState("idle");
+        goToStep(0);
+      });
+    }
+
+    if (wizardErrorRetry) {
+      wizardErrorRetry.addEventListener("click", () => {
+        setWizardState("idle");
+      });
+    }
+
+    setWizardState("idle");
+    updateStep();
+  }
 });
