@@ -107,7 +107,6 @@ a {
 
 .nav-links {
   display: flex;
-  align-items: center;
   gap: 16px;
   justify-content: center;
   color: var(--muted);
@@ -125,73 +124,6 @@ a {
 .nav-links a:hover {
   color: var(--text);
   background: var(--panel);
-}
-
-.nav-mega {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.nav-mega-toggle {
-  appearance: none;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--muted);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  font-size: 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  font-family: inherit;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-}
-
-.nav-mega-toggle:hover,
-.nav-mega-toggle:focus-visible {
-  color: var(--text);
-  background: var(--panel);
-  border-color: rgba(130, 255, 226, 0.4);
-  outline: none;
-}
-
-.mega-panel {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  min-width: 240px;
-  padding: 14px;
-  display: grid;
-  gap: 10px;
-  border-radius: 14px;
-  background: rgba(5, 7, 15, 0.95);
-  border: 1px solid var(--border);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-  z-index: 14;
-}
-
-.mega-panel a {
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.nav-mega:hover .mega-panel,
-.nav-mega:focus-within .mega-panel {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, 0);
 }
 
 .nav-cta {
@@ -768,6 +700,14 @@ a {
 }
 
 .brochure {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+.brochure .section-head {
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
