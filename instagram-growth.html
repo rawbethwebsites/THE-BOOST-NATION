@@ -10,8 +10,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Trim bottom padding on this page to avoid dead space on all viewports */
+    .instagram-page .section:last-of-type { padding-bottom: 48px; }
+    @media (max-width: 720px) {
+      .instagram-page .section:last-of-type { padding-bottom: 32px; }
+    }
+  </style>
 </head>
-<body class="about-page">
+<body class="about-page instagram-page">
   <div class="bg-aurora"></div>
   <div class="bg-grid"></div>
 
