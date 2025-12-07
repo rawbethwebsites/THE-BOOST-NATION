@@ -1,0 +1,94 @@
+<svg width="1080" height="1080" viewBox="0 0 1080 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Space Grotesk";
+        src: local("Space Grotesk"), local("SpaceGrotesk-Regular");
+      }
+      .bg { fill: #f5efe6; }
+      .ink { fill: #0f0f0f; }
+      .muted { fill: #2d2720; }
+      .stroke { stroke: #0f0f0f; stroke-width: 2; }
+      .label { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 16px; letter-spacing: 0.12em; }
+      .eyebrow { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+      .title { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 64px; font-weight: 600; letter-spacing: -0.5px; }
+      .subtitle { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 24px; font-weight: 400; letter-spacing: -0.2px; }
+      .card-title { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.1px; }
+      .card-copy { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 17px; font-weight: 400; line-height: 1.5; letter-spacing: -0.08px; }
+      .cta-figure { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.1px; }
+      .cta-label { font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1080" height="1080" rx="48"/>
+
+  <!-- Header -->
+  <g transform="translate(96 120)">
+    <text class="eyebrow muted">Growth &amp; Strategy</text>
+    <text class="title ink" y="82">Instagram, built to scale</text>
+    <text class="subtitle muted" y="134">Clean systems, predictable growth, creative that lands.</text>
+  </g>
+
+  <!-- CTA Pill -->
+  <g transform="translate(780 96)">
+    <rect class="ink" width="204" height="90" rx="18"/>
+    <text class="cta-figure bg" x="22" y="40">$499</text>
+    <text class="cta-label bg" x="22" y="68">launch + growth</text>
+    <g transform="translate(150 34)">
+      <line class="bg" x1="0" y1="0" x2="30" y2="0" stroke-linecap="round" stroke-width="3"/>
+      <polyline fill="none" stroke="#f5efe6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="20,-10 30,0 20,10"/>
+    </g>
+  </g>
+
+  <!-- Divider -->
+  <line class="ink" x1="96" y1="248" x2="984" y2="248" stroke-width="2"/>
+
+  <!-- Section Label -->
+  <g transform="translate(96 292)">
+    <rect class="ink" width="126" height="30" rx="12"/>
+    <text class="label bg" x="18" y="21">What’s inside</text>
+  </g>
+
+  <!-- Cards -->
+  <g transform="translate(96 340)">
+    <!-- Card 1 -->
+    <g>
+      <rect class="stroke" x="0" y="0" width="420" height="180" rx="22" fill="none"/>
+      <circle class="ink" cx="30" cy="34" r="6"/>
+      <text class="card-title ink" x="52" y="42">Instagram Audit</text>
+      <text class="card-copy muted" x="30" y="82">Profile, highlights, hooks, and bios tuned for</text>
+      <text class="card-copy muted" x="30" y="108">conversion and clarity.</text>
+    </g>
+    <!-- Card 2 -->
+    <g transform="translate(464 0)">
+      <rect class="stroke" x="0" y="0" width="420" height="180" rx="22" fill="none"/>
+      <circle class="ink" cx="30" cy="34" r="6"/>
+      <text class="card-title ink" x="52" y="42">Content Calendar</text>
+      <text class="card-copy muted" x="30" y="82">4-week cadence with angles, prompts, and</text>
+      <text class="card-copy muted" x="30" y="108">design direction to stay consistent.</text>
+    </g>
+
+    <!-- Card 3 -->
+    <g transform="translate(0 212)">
+      <rect class="stroke" x="0" y="0" width="420" height="180" rx="22" fill="none"/>
+      <circle class="ink" cx="30" cy="34" r="6"/>
+      <text class="card-title ink" x="52" y="42">Growth Roadmap</text>
+      <text class="card-copy muted" x="30" y="82">KPIs, experiments, collabs, and check-ins to</text>
+      <text class="card-copy muted" x="30" y="108">keep momentum and measure impact.</text>
+    </g>
+    <!-- Card 4 -->
+    <g transform="translate(464 212)">
+      <rect class="stroke" x="0" y="0" width="420" height="180" rx="22" fill="none"/>
+      <circle class="ink" cx="30" cy="34" r="6"/>
+      <text class="card-title ink" x="52" y="42">Reel Concepts &amp; Hashtags</text>
+      <text class="card-copy muted" x="30" y="82">Trending hooks, b-roll prompts, and SEO tags</text>
+      <text class="card-copy muted" x="30" y="108">mapped to your niche.</text>
+    </g>
+  </g>
+
+  <!-- Bottom Accent -->
+  <g transform="translate(96 860)">
+    <line class="ink" x1="0" y1="0" x2="180" y2="0" stroke-width="6" stroke-linecap="round"/>
+    <text class="eyebrow muted" x="200" y="6">Minimal. Bold. Clear.</text>
+  </g>
+</svg>
