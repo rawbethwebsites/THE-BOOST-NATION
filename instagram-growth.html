@@ -315,9 +315,25 @@
         <p class="eyebrow accent">Upgrade</p>
         <h2>Move to Video Editing + Full Social Management.</h2>
         <p class="lede">Let us cut every reel, polish captions, schedule posts, and manage engagement while you focus on filming and your audience.</p>
-        <div class="cta-actions">
-          <a class="pill-btn ripple magnetic" href="mailto:rawbethaffiliate@gmail.com?subject=Upgrade%20to%20Video%20Editing%20%2B%20Social%20Management&body=Hi%20team%2C%0A%0AI%27d%20like%20to%20upgrade%20to%20the%20video%20editing%20%2B%20full%20social%20management%20package.%20Please%20share%20next%20steps.%0A%0AThanks!">Upgrade my package</a>
-        </div>
+        <form class="brand-form-grid" style="margin-top:12px;" action="https://formsubmit.co/rawbethaffiliate@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Upgrade to Video Editing + Full Social Management">
+          <input type="hidden" name="package" value="Instagram Growth → Video Editing + Social Management">
+          <div class="field">
+            <label for="upgrade-name">Name</label>
+            <input id="upgrade-name" name="name" type="text" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="upgrade-email">Email</label>
+            <input id="upgrade-email" name="email" type="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field" style="grid-column:1/-1;">
+            <label for="upgrade-notes">Notes</label>
+            <textarea id="upgrade-notes" name="notes" placeholder="Any context about your content volume or platforms"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="pill-btn ripple magnetic" type="submit">Upgrade my package</button>
+          </div>
+        </form>
       </div>
     </section>
   </main>
