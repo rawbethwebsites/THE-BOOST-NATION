@@ -126,6 +126,64 @@ a {
   background: var(--panel);
 }
 
+.nav-mega {
+  position: relative;
+}
+
+.nav-mega-toggle {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-mega-toggle:hover,
+.nav-mega-toggle:focus-visible {
+  color: var(--text);
+  background: var(--panel);
+  outline: none;
+}
+
+.mega-panel {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 240px;
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  border-radius: 14px;
+  background: rgba(5, 7, 15, 0.95);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 14;
+}
+
+.mega-panel a {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.nav-mega:hover .mega-panel,
+.nav-mega:focus-within .mega-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
 .nav-cta {
   justify-self: flex-end;
 }
