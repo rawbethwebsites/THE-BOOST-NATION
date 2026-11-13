@@ -1,0 +1,11 @@
+{
+  "name": "job-hunt-outreach",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Draft, check and track cold emails to executives: ask for the forward, ask for advice, be specific.",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve -l 3000 ."
+  }
+}

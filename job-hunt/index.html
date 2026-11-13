@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Email the Top</title>
+  <meta name="description" content="Draft, check and track cold emails to executives: ask for the forward, ask for advice, be specific.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Email the Top</h1>
+      <p class="sub">Skip the pile of applications nobody reads. Email the person at the top and get forwarded to the right one.</p>
+      <nav class="tabs" role="tablist">
+        <button role="tab" data-tab="write" aria-selected="true">Write</button>
+        <button role="tab" data-tab="tracker" aria-selected="false">Tracker <span id="due-badge" class="badge" hidden></span></button>
+        <button role="tab" data-tab="method" aria-selected="false">The method</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- WRITE -->
+    <section id="tab-write" class="panel" role="tabpanel">
+      <div class="grid">
+        <form id="draft-form" class="card" autocomplete="on">
+          <h2>Who and what</h2>
+          <fieldset>
+            <legend>You</legend>
+            <label>Your name<input name="yourName" placeholder="Ada Obi"></label>
+            <label>One line about you<input name="background" placeholder="a final-year law student at UNILAG"></label>
+            <label>Sign-off line <small>(optional: phone, LinkedIn)</small><input name="signoff" placeholder="linkedin.com/in/adaobi"></label>
+          </fieldset>
+          <fieldset>
+            <legend>Them</legend>
+            <label>Their name, as you'll greet them<input name="contactName" placeholder="Mr. Kobayashi"></label>
+            <div class="row">
+              <label>Their title<input name="title" placeholder="Chief Talent Officer"></label>
+              <label>Company<input name="company" placeholder="Canon"></label>
+            </div>
+            <label>Their email<input name="email" type="email" placeholder="first.last@company.com"></label>
+          </fieldset>
+          <fieldset>
+            <legend>The ask</legend>
+            <label>Exact role(s) you want <small>(comma-separated: be specific)</small>
+              <input name="roles" placeholder="legal analyst, legal assistant, paralegal"></label>
+            <div class="row">
+              <label>Where <small>(optional)</small><input name="location" placeholder="London"></label>
+              <label>Why them <small>(optional)</small><input name="reason" placeholder="your in-house legal team's reputation"></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <div class="card draft">
+          <div class="draft-head">
+            <h2>Your email</h2>
+            <button type="button" id="regen" class="ghost" title="Rebuild the draft from the form, discarding manual edits">Rebuild from form</button>
+          </div>
+          <label>Subject<input id="subject"></label>
+          <label>Body<textarea id="body" rows="14" spellcheck="true"></textarea></label>
+          <p class="hint" id="edit-note" hidden>You've edited the draft. Form changes won't overwrite it until you rebuild.</p>
+
+          <ul id="checks" class="checks" aria-live="polite"></ul>
+
+          <div class="actions">
+            <button type="button" id="copy">Copy email</button>
+            <a id="mailto" class="button secondary" href="#">Open in mail app</a>
+            <button type="button" id="save" class="secondary">Save to tracker</button>
+          </div>
+          <p id="toast" class="toast" role="status" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKER -->
+    <section id="tab-tracker" class="panel" role="tabpanel" hidden>
+      <div class="card">
+        <div class="draft-head">
+          <h2>Who you've emailed</h2>
+          <div class="actions tight">
+            <button type="button" id="export" class="ghost">Export CSV</button>
+          </div>
+        </div>
+        <div id="stats" class="stats"></div>
+        <p id="empty" class="hint">Nothing yet. Write your first email and save it here.</p>
+        <div class="table-wrap">
+          <table id="tracker" hidden>
+            <thead>
+              <tr><th>Contact</th><th>Company</th><th>Roles</th><th>Status</th><th>Sent</th><th>Follow up</th><th>Notes</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="hint">Saved in this browser only. Export to CSV to back it up or move it to a spreadsheet.</p>
+      </div>
+    </section>
+
+    <!-- METHOD -->
+    <section id="tab-method" class="panel" role="tabpanel" hidden>
+      <div class="card prose">
+        <h2>The goal isn't a reply from the CEO</h2>
+        <p>The goal is to cut through the noise and get your email to the right person. A forward from the top skips the thousands of applications nobody is reading. The person you email doesn't need to have the job for you. They just need to know who does.</p>
+
+        <ol class="rules">
+          <li>
+            <h3>Ask for the forward</h3>
+            <p>Always end with: <q>If you're not the right person, I'd love it if you could connect me with them.</q></p>
+          </li>
+          <li>
+            <h3>Ask for advice, not a job</h3>
+            <p>Don't write "please hire me". Ask for guidance on how to best position yourself for the role. People love being a mentor. They hate being put on the spot.</p>
+          </li>
+          <li>
+            <h3>Be specific</h3>
+            <p>Say exactly what you want: <q>a legal analyst, legal assistant, or paralegal role</q>. The more specific you are, the easier you are to forward.</p>
+          </li>
+        </ol>
+
+        <h3>Who to email</h3>
+        <p>Go as high as makes sense: the CEO, a founder, or the head of the function you want to join (chief talent officer, general counsel, head of engineering). Find them on the company site or LinkedIn.</p>
+
+        <h3>Finding the address</h3>
+        <p>Most companies use one pattern for everyone: <code>first.last@</code>, <code>first@</code> or <code>flast@</code>. Check the pattern on a press release or a colleague's public email, then apply it.</p>
+
+        <h3>After you send</h3>
+        <p>Log it in the tracker. If you hear nothing in a week, send one short, polite follow-up in the same thread. When someone forwards you, thank them and move fast with the new contact.</p>
+
+        <p class="cta">Now go email someone you think is out of your league.</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
